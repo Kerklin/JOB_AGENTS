@@ -1,0 +1,62 @@
+name: Job agents
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"        # every 15 minutes (GitHub's shortest allowed is 5)
+  workflow_dispatch:
+    inputs:
+      job_url:
+        description: "Optional: link of ONE job to analyse now (must start with https://)"
+        required: false
+        default: ""
+      job_text:
+        description: "Optional: paste the job text here if the link needs a login"
+        required: false
+        default: ""
+      dry_run:
+        description: "Test only: search for jobs, no AI and no e-mail"
+        type: boolean
+        default: false
+
+concurrency:
+  group: job-agents
+  cancel-in-progress: false
+
+permissions:
+  contents: write     # saves the job list
+  models: read        # lets the agents use GitHub Models (free AI)
+
+jobs:
+  agents:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Install
+        run: |
+          python3 -m venv .venv
+          .venv/bin/pip install --quiet -r requirements.txt
+
+      - name: Run the six agents
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MASTER_CV: ${{ secrets.MASTER_CV }}
+          MAIL_USER: ${{ secrets.MAIL_USER }}
+          MAIL_PASS: ${{ secrets.MAIL_PASS }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+          BACKUP_KEY: ${{ secrets.BACKUP_KEY }}
+          RELIEFWEB_APPNAME: ${{ secrets.RELIEFWEB_APPNAME }}
+          BRAVE_API_KEY: ${{ secrets.BRAVE_API_KEY }}
+          AI_API_KEY: ${{ secrets.AI_API_KEY }}
+          AI_BASE_URL: ${{ vars.AI_BASE_URL }}
+          AI_MODEL: ${{ vars.AI_MODEL }}
+          AI_ENABLED: ${{ vars.AI_ENABLED }}
+          INPUT_JOB_URL: ${{ inputs.job_url }}
+          INPUT_JOB_TEXT: ${{ inputs.job_text }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: .venv/bin/python -m agents.run
+
+      - name: Save results
+        if: always()
+        run: bash scripts/save.sh
