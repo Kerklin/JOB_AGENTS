@@ -1,0 +1,48 @@
+{
+  "_help": "Agent 1 reads these. A source that fails is reported on the front page and never stops the run. Add your own RSS feeds or pages. Set enabled to false to switch one off.",
+  "sources": [
+    {
+      "name": "Arbeitnow (Europe)",
+      "type": "arbeitnow",
+      "url": "https://www.arbeitnow.com/api/job-board-api",
+      "enabled": true
+    },
+    {
+      "name": "UNjobs - construction",
+      "type": "html_links",
+      "url": "https://unjobs.org/skills/construction",
+      "href_regex": "/vacancies/\\d+",
+      "enabled": true
+    },
+    {
+      "name": "EXAMPLE - copy this line to add your own page (turned off)",
+      "type": "html_links",
+      "url": "https://example.org/jobs",
+      "href_regex": "/job/\\d+",
+      "enabled": false
+    },
+    {
+      "name": "EXAMPLE - your own RSS feed (turned off)",
+      "type": "rss",
+      "url": "https://example.org/jobs.rss",
+      "enabled": false
+    },
+    {
+      "name": "ReliefWeb (needs RELIEFWEB_APPNAME secret)",
+      "type": "reliefweb",
+      "enabled": true,
+      "query": "construction OR engineer OR infrastructure OR architect OR supervision OR rehabilitation"
+    },
+    {
+      "name": "Brave web search (needs BRAVE_API_KEY secret, paid after trial)",
+      "type": "brave",
+      "enabled": true,
+      "queries": [
+        "construction engineer vacancy Sarajevo",
+        "UNICEF UNOPS UNDP construction engineer vacancy Bosnia and Herzegovina",
+        "site supervision engineer vacancy Western Balkans",
+        "infrastructure project manager vacancy UN-Habitat UNOPS"
+      ]
+    }
+  ]
+}

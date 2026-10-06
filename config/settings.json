@@ -1,0 +1,17 @@
+{
+  "_help": "Edit these numbers on GitHub (pencil icon). Everything is job-related; no personal data belongs in this public repository.",
+  "ai_daily_cap": 120,
+  "ai_hourly_cap": 20,
+  "ai_per_run_cap": 12,
+  "ai_min_gap_seconds": 6,
+  "max_screenings_per_run": 6,
+  "max_packs_per_run": 1,
+  "min_fit_for_pack": 60,
+  "min_prescore_store": 4,
+  "min_prescore_ai": 6,
+  "cv_max_chars": 11000,
+  "jd_max_chars": 6500,
+  "keep_days_after_deadline": 14,
+  "max_jobs_kept": 400,
+  "run_time_budget_minutes": 18
+}

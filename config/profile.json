@@ -1,0 +1,19 @@
+{
+  "_help": "Job-related search profile only. Weights: higher = more important. Title matches count double.",
+  "home_terms": ["bosnia", "herzegovina", "bih", "sarajevo"],
+  "good_places": ["sarajevo", "bosnia", "herzegovina", "balkan", "western balkans", "home-based", "home based", "remote", "europe", "austria", "croatia", "serbia"],
+  "keywords": {
+    "construction": 4, "construction engineer": 5, "civil engineer": 4, "site supervision": 4,
+    "supervision": 3, "architect": 3, "architectural": 3, "rehabilitation": 3, "infrastructure": 3,
+    "contract management": 3, "contract administration": 3, "project manager": 3, "project management": 3,
+    "programme manager": 3, "program manager": 3, "technical specialist": 3, "technical supervisor": 4,
+    "resident engineer": 4, "quality assurance": 2, "wash": 2, "procurement": 2, "building": 2,
+    "heritage": 3, "cultural heritage": 3, "ipa": 2, "eu-funded": 2, "unicef": 2, "unops": 2,
+    "un-habitat": 2, "undp": 1, "iom": 1, "engineering": 2, "facilities": 2, "shelter": 3,
+    "reconstruction": 3, "pmp": 1, "bill of quantities": 3, "defects liability": 3
+  },
+  "negative": [
+    "software engineer", "data engineer", "developer", "nurse", "driver", "cleaner", "security guard",
+    "accountant", "lawyer", "translator", "intern ", "internship", "teacher", "physician", "mechanic"
+  ]
+}
